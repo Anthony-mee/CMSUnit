@@ -1,0 +1,1793 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Restart Next.js dev server",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"for /f \"tokens=5\" %a in ('netstat -ano ^| findstr LISTENING ^| findstr :3000') do taskkill /PID %a /F & npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inspect Next.js listener",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js dev server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"2180",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Next.js dev server cleanly",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inspect Next.js before verification",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for production verification",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"8564",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify dashboard previews",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run lint && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Run Next.js with dashboard previews",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Inspect Next.js before final build",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for final build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"17040",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build and lint studio previews",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run lint && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Restart updated Next.js site",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Check current site server",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js before project build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"9908",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify CMS pages build",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run lint && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Restart updated Next.js app",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Check Next server listener",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Next.js listener before build",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Get dev server before build",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop dev before build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"16388",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build and lint workspace pages",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run lint && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Start separated CMS workspaces",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Check Next server before build",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next server for build check",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"6056",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build legacy route redirects",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run lint && npm run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Start CMS workspaces",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Check Next.js dev process",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next dev for build check",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"14620",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate Next.js lint",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"label": "Build Next.js project",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Lint active workspace statuses",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"label": "Build active workspace statuses",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Start Next.js development server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Lint cinematic landing pages",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"label": "Find Next dev process for build",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"3000",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next dev before build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"16044",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build cinematic CMS pages",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Restart Next.js development server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check PocketBase listener",
+			"type": "shell",
+			"command": "Get-NetTCPConnection",
+			"args": [
+				"-LocalPort",
+				"8090",
+				"-State",
+				"Listen",
+				"|",
+				"Select-Object",
+				"-ExpandProperty",
+				"OwningProcess"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Lint auth routes and animations",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"label": "Restart PocketBase for auth migration",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"13932",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Apply auth collection migration",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"pocketbase"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Simple Icons package",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"view",
+				"simple-icons",
+				"version"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install official platform icon set",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install",
+				"simple-icons"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Apply PocketBase account migration",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"pocketbase"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check available brand logo exports",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"import('simple-icons').then(i=>console.log(Object.keys(i).filter(k=>/supabase|directus|pocketbase/i.test(k)).join('\\n')))"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify Simple Icons brand exports",
+			"type": "shell",
+			"command": "node -e 'import(\"simple-icons/icons\").then(icons => console.log([\"siSupabase\", \"siDirectus\", \"siPocketbase\"].map(name => `${name}: ${Boolean(icons[name])}`).join(\"\\n\")))'",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js server on port 3000",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"3472",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop broken Next.js server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"9304",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Clear Next.js generated build output",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"const fs = require('node:fs'); const path = require('node:path'); const target = path.resolve('.next'); if (path.basename(target) !== '.next' || path.dirname(target) !== process.cwd()) throw new Error('Unexpected build output path: ' + target); fs.rmSync(target, { recursive: true, force: true }); console.log('Cleared generated Next.js output at ' + target);"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Remove corrupted Next output",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"const fs = require(\"node:fs\"); const path = require(\"node:path\"); const target = path.resolve(\".next\"); if (path.basename(target) !== \".next\" || path.dirname(target) !== process.cwd()) throw new Error(\"Unexpected build output path: \" + target); fs.rmSync(target, { recursive: true, force: true }); console.log(\"Cleared generated Next.js output at \" + target);"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Clear corrupted Next cache",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"rmdir /s /q .next"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect Node server processes",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Get-CimInstance Win32_Process -Filter \"name='node.exe'\" | Select-Object ProcessId,ParentProcessId,CommandLine | Format-List"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect active Node processes",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId, ParentProcessId, CommandLine | Format-List",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next server for shared-auth build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"2352",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for scanner build check",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"6024",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for final scanner build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"11860",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Next.js after scanner build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Stop Next.js for last scanner build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"4912",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for style verification build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"11552",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for palette verification build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"12688",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next.js for scanner redesign build",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"3392",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next.js server 12748",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"12748",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 12100",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"12100",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 18160",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"18160",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start PocketBase service",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"pocketbase"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 3824",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"3824",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 2472",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"2472",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 5716",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"5716",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 10864",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"10864",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop active Next server 11080",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"11080",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop current PocketBase process",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"1824",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop PocketBase before expansion",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"8888",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop PocketBase before detail migration",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"17980",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop stale Next.js server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"15076",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop PocketBase for readings migration",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"996",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop Next server 5584",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"5584",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Compile ESP32 PlatformIO firmware",
+			"type": "shell",
+			"command": "pio",
+			"args": [
+				"run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check PlatformIO Python module",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"platformio",
+				"--version"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Detect ESP32 serial ports",
+			"type": "shell",
+			"command": "pio",
+			"args": [
+				"device",
+				"list"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Detect USB serial device",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_SerialPort | Select-Object DeviceID,Name,Description",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find PlatformIO executable",
+			"type": "shell",
+			"command": "Get-ChildItem -Path \"$env:USERPROFILE\\.platformio\",\"$env:USERPROFILE\\.vscode\\extensions\" -Filter pio.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 5 -ExpandProperty FullName",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Detect computer LAN IP",
+			"type": "shell",
+			"command": "Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.IPAddress -notlike '127.*' -and $_.IPAddress -notlike '169.254.*'} | Select-Object IPAddress,InterfaceAlias",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check USB devices",
+			"type": "shell",
+			"command": "Get-PnpDevice -PresentOnly | Where-Object {$_.Class -match 'Ports|USB' -or $_.FriendlyName -match 'ESP|CP210|CH340|USB Serial'} | Select-Object Status,Class,FriendlyName,InstanceId",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find PlatformIO commands",
+			"type": "shell",
+			"command": "Get-ChildItem -Path \"$env:USERPROFILE\\.platformio\",\"$env:USERPROFILE\\.vscode\\extensions\" -Include pio.exe,pio.bat,platformio.exe,platformio.bat -Recurse -ErrorAction SilentlyContinue | Select-Object -First 10 -ExpandProperty FullName",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build ESP32 firmware",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop failed PlatformIO download",
+			"type": "shell",
+			"command": "Get-Process | Where-Object {$_.ProcessName -match 'pio|python'} | Select-Object Id,ProcessName",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop PlatformIO process",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"18924",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check available disk space",
+			"type": "shell",
+			"command": "Get-PSDrive C | Select-Object Used,Free",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check ESP32 COM7",
+			"type": "shell",
+			"command": "Get-PnpDevice -PresentOnly | Where-Object {$_.FriendlyName -match 'COM7|CH340|ESP'} | Select-Object Status,FriendlyName,InstanceId",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Retry ESP32 firmware build",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build corrected ESP32 firmware",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload ESP32 firmware to COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload",
+				"--upload-port",
+				"COM7"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 sensor output",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect ESP32 PlatformIO processes",
+			"type": "shell",
+			"command": "Get-Process | Where-Object {$_.ProcessName -match 'pio|python'} | Select-Object Id,ProcessName,Path",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Detect current Wi-Fi IP",
+			"type": "shell",
+			"command": "Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.IPAddress -notlike '127.*' -and $_.IPAddress -notlike '169.254.*'} | Select-Object IPAddress,InterfaceAlias",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Confirm ESP32 COM7",
+			"type": "shell",
+			"command": "Get-PnpDevice -PresentOnly | Where-Object {$_.FriendlyName -match 'CH340|COM7|ESP'} | Select-Object Status,FriendlyName",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find active PlatformIO processes",
+			"type": "shell",
+			"command": "Get-Process | Where-Object {$_.ProcessName -match 'pio|python'} | Select-Object Id,ProcessName,Path",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop old ESP32 monitor",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"5948",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build network-updated ESP32",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload updated ESP32 to COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload",
+				"--upload-port",
+				"COM7"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor uploaded ESP32",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Wi-Fi interface",
+			"type": "shell",
+			"command": "Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.InterfaceAlias -eq 'Wi-Fi'} | Select-Object IPAddress",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop localhost Next server",
+			"type": "shell",
+			"command": "Stop-Process",
+			"args": [
+				"-Id",
+				"3352",
+				"-Force"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start LAN Next server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"-H",
+				"0.0.0.0"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start LAN Next server via cmd",
+			"type": "shell",
+			"command": "cmd /c \"npm run dev -- -H 0.0.0.0\"",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build and upload ESP32 firmware",
+			"type": "shell",
+			"command": "cmd /c \"C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe run -t upload\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find serial monitor process",
+			"type": "shell",
+			"command": "cmd /c \"tasklist /v | findstr /i \\",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "List serial processes",
+			"type": "shell",
+			"command": "cmd /c tasklist",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Release ESP32 serial port",
+			"type": "shell",
+			"command": "Stop-Process -Id 16660,17532 -Force",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 Wi-Fi",
+			"type": "shell",
+			"command": "cmd /c \"C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe device monitor -p COM7 -b 115200\"",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check LAN listeners",
+			"type": "shell",
+			"command": "Get-NetTCPConnection -State Listen | Where-Object {$_.LocalPort -in 3000,8090} | Select-Object LocalAddress,LocalPort,OwningProcess",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check ESP32 and app processes",
+			"type": "shell",
+			"command": "Get-Process | Where-Object {$_.ProcessName -match 'pio|python|node'} | Select-Object Id,ProcessName,Path",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Query PocketBase readings",
+			"type": "shell",
+			"command": "$r=Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:8090/api/collections/sensor_readings/records?sort=-recorded_at&perPage=5'; Write-Output $r.StatusCode; Write-Output $r.Content",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect ESP32 connection now",
+			"type": "shell",
+			"command": "Write-Output 'NETWORK'; Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.IPAddress -notlike '127.*' -and $_.PrefixOrigin -ne 'WellKnown'} | Select-Object InterfaceAlias,IPAddress,PrefixLength; Write-Output 'SERIAL'; & 'C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe' device list",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Read ESP32 live serial output",
+			"type": "shell",
+			"command": "& 'C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe' device monitor -p COM7 -b 115200",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "ESP32 Serial Monitor COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload ESP32 Aeron firmware",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload",
+				"--upload-port",
+				"COM7"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 Aeron COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find computer LAN IP",
+			"type": "shell",
+			"command": "ipconfig",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Next.js LAN server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"-H",
+				"0.0.0.0"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Next LAN server",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"next",
+				"dev",
+				"-H",
+				"0.0.0.0"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload corrected API firmware",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload",
+				"--upload-port",
+				"COM7"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find COM7 monitor process",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'platformio|pio.exe|COM7' } | Select-Object ProcessId,Name,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Release COM7 monitor",
+			"type": "shell",
+			"command": "Stop-Process -Id 20096 -Force",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload corrected API firmware again",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"run",
+				"--target",
+				"upload",
+				"--upload-port",
+				"COM7"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor corrected ESP32",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check API route source",
+			"type": "shell",
+			"command": "Test-Path .\\app\\api\\iot\\readings\\route.ts; Test-Path .\\.next\\server\\app\\api\\iot\\readings\\route.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "List Next processes now",
+			"type": "shell",
+			"command": "Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,Path",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Identify Next processes now",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop stale Next servers",
+			"type": "shell",
+			"command": "Stop-Process -Id 17816,21040,10824,7636 -Force -ErrorAction SilentlyContinue; Remove-Item -LiteralPath .\\.next -Recurse -Force -ErrorAction SilentlyContinue",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Restart Next LAN server clean",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"next",
+				"dev",
+				"-H",
+				"0.0.0.0"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 after API fix",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 final",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect serial lock latest",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'COM7|device monitor' } | Select-Object ProcessId,Name,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop old COM7 monitor",
+			"type": "shell",
+			"command": "Stop-Process -Id 12276,18932,14696 -Force -ErrorAction SilentlyContinue",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor ESP32 clean port",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Monitor temperature sensor COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Find COM7 owner",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'COM7|device monitor' } | Select-Object ProcessId,Name,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Release COM7 for monitor",
+			"type": "shell",
+			"command": "Stop-Process -Id 2992,21444,6660 -Force -ErrorAction SilentlyContinue",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Read temperature sensor COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Test MQ smoke sensor COM7",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM7",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build charts dashboard",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build charts and scanning",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate production build",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Docker availability",
+			"type": "shell",
+			"command": "docker",
+			"args": [
+				"compose",
+				"config"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Copy Fieldnotes to Ubuntu",
+			"type": "shell",
+			"command": "scp",
+			"args": [
+				"-r",
+				"Dockerfile",
+				"docker-compose.yml",
+				"docker",
+				".dockerignore",
+				".env.example",
+				"package.json",
+				"package-lock.json",
+				"next.config.ts",
+				"tsconfig.json",
+				"eslint.config.mjs",
+				"README.md",
+				"app",
+				"components",
+				"lib",
+				"public",
+				"scripts",
+				"pb_migrations",
+				"vboxuser@10.0.2.15:~/fieldnotes"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check VirtualBox shared folders",
+			"type": "shell",
+			"command": "Get-ChildItem -Path 'C:\\Users\\richa' -Directory -Force | Where-Object { $_.Name -match 'field|share|CMS' } | Select-Object FullName",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Windows SSH tools",
+			"type": "shell",
+			"command": "Get-Command ssh,scp,sftp -ErrorAction SilentlyContinue | Select-Object Name,Source; Test-Path C:\\Windows\\System32\\OpenSSH\\scp.exe",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Transfer project to Ubuntu",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\OpenSSH\\scp.exe",
+			"args": [
+				"-r",
+				"Dockerfile",
+				"docker-compose.yml",
+				"docker",
+				".dockerignore",
+				".env.example",
+				"package.json",
+				"package-lock.json",
+				"next.config.ts",
+				"tsconfig.json",
+				"eslint.config.mjs",
+				"README.md",
+				"app",
+				"components",
+				"lib",
+				"public",
+				"scripts",
+				"pb_migrations",
+				"vboxuser@10.0.2.15:~/fieldnotes"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Ubuntu SSH access",
+			"type": "shell",
+			"command": "Test-NetConnection 127.0.0.1 -Port 2222",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Read live ESP32 sensor data",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM8",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Read ESP32 COM8 data now",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM8",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run ESP32 sensors now",
+			"type": "shell",
+			"command": "C:\\Users\\richa\\.platformio\\penv\\Scripts\\pio.exe",
+			"args": [
+				"device",
+				"monitor",
+				"--port",
+				"COM8",
+				"--baud",
+				"115200"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

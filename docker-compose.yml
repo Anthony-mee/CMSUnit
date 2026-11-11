@@ -1,0 +1,49 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_POCKETBASE_URL: ${NEXT_PUBLIC_POCKETBASE_URL:?Set NEXT_PUBLIC_POCKETBASE_URL in .env}
+    environment:
+      NODE_ENV: production
+      POCKETBASE_URL: http://pocketbase:8090
+      NEXT_PUBLIC_POCKETBASE_URL: ${NEXT_PUBLIC_POCKETBASE_URL:?Set NEXT_PUBLIC_POCKETBASE_URL in .env}
+      ROBOFLOW_API_KEY: ${ROBOFLOW_API_KEY:-}
+      ROBOFLOW_MODEL_ID: ${ROBOFLOW_MODEL_ID:-chili-classification-5ohkl/9}
+      ROBOFLOW_FLOWER_SEGMENTATION_MODEL_ID: ${ROBOFLOW_FLOWER_SEGMENTATION_MODEL_ID:-}
+      ROBOFLOW_CHILI_SEGMENTATION_MODEL_ID: ${ROBOFLOW_CHILI_SEGMENTATION_MODEL_ID:-}
+      ROBOFLOW_CHILI_MATURITY_MODEL_ID: ${ROBOFLOW_CHILI_MATURITY_MODEL_ID:-}
+      IOT_DEVICE_KEY: ${IOT_DEVICE_KEY:?Set IOT_DEVICE_KEY in .env}
+    depends_on:
+      pocketbase:
+        condition: service_started
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  pocketbase:
+    build:
+      context: .
+      dockerfile: docker/pocketbase/Dockerfile
+    volumes:
+      - pocketbase_data:/pb_data
+      - ./pb_migrations:/pb_migrations:ro
+    ports:
+      - "8090:8090"
+    expose:
+      - "8090"
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN:?Set CLOUDFLARE_TUNNEL_TOKEN in .env}
+    depends_on:
+      app:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  pocketbase_data:
