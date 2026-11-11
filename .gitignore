@@ -9,3 +9,5 @@ pocketbase/bin/
 .env
 .env.local
 .env.*.local
+
+.pio/
