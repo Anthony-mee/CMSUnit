@@ -27,7 +27,10 @@ npm run pocketbase
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site and
+The development command listens on all local network interfaces and displays
+your computer's LAN IPv4 address as the usable `Network` URL. Open that URL on
+another device on the same network, or use
+[http://localhost:3000](http://localhost:3000) on the development computer. Open
 [http://127.0.0.1:8090/_/](http://127.0.0.1:8090/_/) to manage content in the
 PocketBase admin UI. Create your first PocketBase superuser when prompted. The
 public API only has permission to list and view platform records; changes are
