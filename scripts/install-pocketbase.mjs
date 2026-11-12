@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { createWriteStream } from "node:fs";
-import { access, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
@@ -9,7 +9,7 @@ import { pipeline } from "node:stream/promises";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const binaryDirectory = join(projectRoot, "pocketbase", "bin");
-const binaryPath = join(binaryDirectory, "pocketbase.exe");
+const binaryPath = join(binaryDirectory, process.platform === "win32" ? "pocketbase.exe" : "pocketbase");
 const temporaryZip = join(binaryDirectory, "pocketbase-download.zip");
 const forceInstall = process.argv.includes("--force");
 
@@ -41,8 +41,20 @@ async function download(url) {
 }
 
 async function main() {
-  if (process.platform !== "win32" || process.arch !== "x64") {
-    throw new Error("This installer currently supports Windows x64 only.");
+  const platformNames = {
+    win32: "windows",
+    linux: "linux",
+  };
+  const architectureNames = {
+    x64: "amd64",
+    arm64: "arm64",
+    arm: "armv7",
+  };
+  const platformName = platformNames[process.platform];
+  const architectureName = architectureNames[process.arch];
+
+  if (!platformName || !architectureName) {
+    throw new Error(`Unsupported platform: ${process.platform} ${process.arch}.`);
   }
 
   if (!forceInstall) {
@@ -63,12 +75,12 @@ async function main() {
   );
   const release = await releaseResponse.json();
   const version = release.tag_name.replace(/^v/, "");
-  const assetName = `pocketbase_${version}_windows_amd64.zip`;
+  const assetName = `pocketbase_${version}_${platformName}_${architectureName}.zip`;
   const archiveAsset = release.assets.find((asset) => asset.name === assetName);
   const checksumAsset = release.assets.find((asset) => asset.name === "checksums.txt");
 
   if (!archiveAsset || !checksumAsset) {
-    throw new Error(`Could not find the Windows x64 archive and checksum for ${release.tag_name}.`);
+    throw new Error(`Could not find the ${assetName} archive and checksum for ${release.tag_name}.`);
   }
 
   await mkdir(binaryDirectory, { recursive: true });
@@ -107,6 +119,9 @@ async function main() {
     }
 
     await access(binaryPath);
+    if (process.platform !== "win32") {
+      await chmod(binaryPath, 0o755);
+    }
 
     await ensureLocalEnvironment();
 
